@@ -1,7 +1,22 @@
 body {
     background-color: #C0C0C0;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    text-align: center;
+}
+
+.footer {
+    text-align: center;
 }
 
 .calculator-container {
-    
+    border: black solid 3px;
+}
+
+.calculator-button-container {
+    display: flex;
+    flex-direction: column;
 }
