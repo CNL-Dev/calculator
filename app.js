@@ -1,4 +1,11 @@
 const calculatorDisplay = document.getElementsByClassName('.calculator-display');
+const inputButtons = document.querySelectorAll('.input-button');
+
+inputButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        console.log(button.id)
+    });
+});
 
 // Basic arithmetic functions
 function add(num1, num2) {
