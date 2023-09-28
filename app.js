@@ -1,3 +1,5 @@
+const calculatorDisplay = document.getElementsByClassName('.calculator-display');
+
 // Basic arithmetic functions
 function add(num1, num2) {
     return num1 + num2;
@@ -29,4 +31,9 @@ function operate(operator, num1, num2) {
         default:
             return "Illegal input!";
     }
+}
+
+// Displays the input on the display screen on the calculator
+function displayInput() {
+
 }
