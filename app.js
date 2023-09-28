@@ -1,11 +1,18 @@
-const calculatorDisplay = document.getElementsByClassName('.calculator-display');
+const calculatorDisplay = document.querySelector('.calculator-display');
 const inputButtons = document.querySelectorAll('.input-button');
+const clearButton = document.querySelector('.clear-button');
+let displayValue = "";
 
+// On click, buttons will return their id
 inputButtons.forEach(button => {
     button.addEventListener('click', () => {
-        console.log(button.id)
+        console.log(button.id);
+        displayValue += button.id;
+        updateDisplayInput();
     });
 });
+
+clearButton.addEventListener('click', clearDisplay);
 
 // Basic arithmetic functions
 function add(num1, num2) {
@@ -40,7 +47,12 @@ function operate(operator, num1, num2) {
     }
 }
 
-// Displays the input on the display screen on the calculator
-function displayInput() {
+// Updates the display screen on the calculator
+function updateDisplayInput() {
+    calculatorDisplay.textContent = displayValue;
+}
 
+function clearDisplay() {
+    displayValue = "";
+    updateDisplayInput();
 }
