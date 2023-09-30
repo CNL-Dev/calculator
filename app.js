@@ -1,14 +1,37 @@
 const calculatorDisplay = document.querySelector('.calculator-display');
 const inputButtons = document.querySelectorAll('.input-button');
 const clearButton = document.querySelector('.clear-button');
+
 let displayValue = "";
+let firstInput = "";
+let secondInput = "";
+let currentOperator = "";
 
 // On click, buttons will return their id
 inputButtons.forEach(button => {
     button.addEventListener('click', () => {
-        console.log(button.id);
-        displayValue += button.id;
-        updateDisplayInput();
+        // Returns the operation
+        if(button.id === "=") {
+            displayValue = operate(currentOperator, firstInput, secondInput);
+        }
+        // Sets the current operation
+        else if(button.id === "+" ||
+                button.id === "-" ||
+                button.id === "*" || 
+                button.id === "/") {
+            currentOperator = button.id;
+        }
+        // Assigns the input
+        else {
+            if(firstInput === "") {
+                firstInput = button.id;
+            }
+            else {
+                secondInput = button.id;
+            }
+        }
+        console.log(`${firstInput} ${currentOperator} ${secondInput}`);
+        updateDisplay();
     });
 });
 
@@ -48,11 +71,21 @@ function operate(operator, num1, num2) {
 }
 
 // Updates the display screen on the calculator
-function updateDisplayInput() {
+function updateDisplay() {
+    displayValue = `${firstInput} ${currentOperator} ${secondInput}`;
     calculatorDisplay.textContent = displayValue;
 }
 
+// Clears the calculator display
 function clearDisplay() {
     displayValue = "";
-    updateDisplayInput();
+    resetInput();
+    updateDisplay();
+}
+
+// Resets the input values 
+function resetInput() {
+    firstInput = "";
+    secondInput = "";
+    currentOperator = "";
 }
