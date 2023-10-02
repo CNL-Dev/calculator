@@ -1,5 +1,6 @@
 const calculatorDisplay = document.querySelector('.calculator-display');
-const inputButtons = document.querySelectorAll('.input-button');
+const numberButtons = document.querySelectorAll('.number');
+const operatorButtons = document.querySelectorAll(".operator");
 const clearButton = document.querySelector('.clear-button');
 
 let displayValue = "";
@@ -7,31 +8,17 @@ let firstInput = "";
 let secondInput = "";
 let currentOperator = "";
 
-// On click, buttons will return their id
-inputButtons.forEach(button => {
+// On click, number will append to display
+numberButtons.forEach(button => {
     button.addEventListener('click', () => {
-        // Returns the operation
-        if(button.id === "=") {
-            displayValue = operate(currentOperator, firstInput, secondInput);
-        }
-        // Sets the current operation
-        else if(button.id === "+" ||
-                button.id === "-" ||
-                button.id === "*" || 
-                button.id === "/") {
-            currentOperator = button.id;
-        }
-        // Assigns the input
-        else {
-            if(firstInput === "") {
-                firstInput = button.id;
-            }
-            else {
-                secondInput = button.id;
-            }
-        }
-        console.log(`${firstInput} ${currentOperator} ${secondInput}`);
-        updateDisplay();
+        appendNumberToDisplay(button.id);
+    });
+});
+
+// On click, append operator to display
+operatorButtons.forEach(button => {
+    button.addEventListener('click', () => {
+
     });
 });
 
@@ -70,9 +57,26 @@ function operate(operator, num1, num2) {
     }
 }
 
+// Appends a number to the display
+function appendNumberToDisplay(num) {
+    calculatorDisplay.textContent += num;
+}
+
+// Removes the last input from the display
+function removeNumberFromDisplay() {
+    calculatorDisplay.textContent
+    .toString().slice(0, -1);
+}
+
+// Appends an operator to the display
+function appendOperatorToDisplay(operator) {
+    currentOperator = operator;
+    firstInput = calculatorDisplay.textContent;
+}
+
 // Updates the display screen on the calculator
 function updateDisplay() {
-    displayValue = `${firstInput} ${currentOperator} ${secondInput}`;
+    // displayValue = `${firstInput} ${currentOperator} ${secondInput}`;
     calculatorDisplay.textContent = displayValue;
 }
 
