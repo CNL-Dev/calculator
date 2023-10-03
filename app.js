@@ -68,8 +68,8 @@ function removeNumberFromDisplay() {
     .toString().slice(0, -1);
 }
 
-// Appends an operator to the display
-function appendOperatorToDisplay(operator) {
+// Appends an operator to the current operation
+function appendOperator(operator) {
     currentOperator = operator;
     firstInput = calculatorDisplay.textContent;
 }
