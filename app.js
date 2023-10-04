@@ -25,7 +25,8 @@ operatorButtons.forEach(button => {
 
 // On click, evaluate the operation
 evaluateButton.addEventListener('click', () => {
-
+    displayValue = operate(currentOperator, firstInput, secondInput);
+    updateDisplay();
 });
 
 clearButton.addEventListener('click', clearDisplay);
