@@ -2,7 +2,7 @@ const calculatorDisplay = document.querySelector('.calculator-display');
 const numberButtons = document.querySelectorAll('.number');
 const operatorButtons = document.querySelectorAll(".operator");
 const clearButton = document.querySelector('.clear-button');
-const evaluateButton = document.querySelector('.evaluate');
+const evaluateButton = document.querySelector('.evaluate-button');
 
 let displayValue = "";
 let firstInput = "";
@@ -65,14 +65,15 @@ function operate(operator, num1, num2) {
 
 // Appends a number to the display
 function appendNumberToDisplay(num) {
-    calculatorDisplay.textContent += num;
-
     if(firstInput === "") {
         firstInput = num;
+        displayValue = firstInput;
     }
     else if(secondInput === "") {
         secondInput = num;
+        displayValue = secondInput;
     }
+    updateDisplay();
 }
 
 // Removes the last input from the display
