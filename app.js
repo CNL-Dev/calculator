@@ -1,8 +1,9 @@
 const calculatorDisplay = document.querySelector('.calculator-display');
 const numberButtons = document.querySelectorAll('.number');
-const operatorButtons = document.querySelectorAll(".operator");
+const operatorButtons = document.querySelectorAll(".operator-button");
 const clearButton = document.querySelector('.clear-button');
 const evaluateButton = document.querySelector('.evaluate-button');
+const deleteButton = document.querySelector('.delete-button');
 
 let displayValue = "";
 let firstInput = "";
@@ -29,6 +30,7 @@ evaluateButton.addEventListener('click', () => {
     updateDisplay();
 });
 
+// On click, clears the display and values
 clearButton.addEventListener('click', clearDisplay);
 
 // Basic arithmetic functions
@@ -50,6 +52,9 @@ function divide(num1, num2) {
 
 // Returns the appropriate operation from the user input
 function operate(operator, num1, num2) {
+    num1 = Number(num1);
+    num2 = Number(num2);
+
     switch(operator) {
         case "+":
             return add(num1, num2);
@@ -58,6 +63,10 @@ function operate(operator, num1, num2) {
         case "*":
             return multiply(num1, num2);
         case "/":
+            if(num1 === 0 || num2 === 0) {
+                alert("Can't divide by zero!");
+                return 0;
+            } 
             return divide(num1, num2);
         default:
             return "Illegal input!";
@@ -66,12 +75,12 @@ function operate(operator, num1, num2) {
 
 // Appends a number to the display
 function appendNumberToDisplay(num) {
-    if(firstInput === "") {
-        firstInput = num;
+    if(currentOperator === "") {
+        firstInput += num;
         displayValue = firstInput;
     }
-    else if(secondInput === "") {
-        secondInput = num;
+    else {
+        secondInput += num;
         displayValue = secondInput;
     }
     updateDisplay();
