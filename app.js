@@ -2,6 +2,7 @@ const calculatorDisplay = document.querySelector('.calculator-display');
 const numberButtons = document.querySelectorAll('.number');
 const operatorButtons = document.querySelectorAll(".operator");
 const clearButton = document.querySelector('.clear-button');
+const evaluateButton = document.querySelector('.evaluate');
 
 let displayValue = "";
 let firstInput = "";
@@ -15,11 +16,16 @@ numberButtons.forEach(button => {
     });
 });
 
-// On click, append operator to display
+// On click, append operator
 operatorButtons.forEach(button => {
     button.addEventListener('click', () => {
-
+        appendOperator(button.id);
     });
+});
+
+// On click, evaluate the operation
+evaluateButton.addEventListener('click', () => {
+
 });
 
 clearButton.addEventListener('click', clearDisplay);
@@ -60,6 +66,13 @@ function operate(operator, num1, num2) {
 // Appends a number to the display
 function appendNumberToDisplay(num) {
     calculatorDisplay.textContent += num;
+
+    if(firstInput === "") {
+        firstInput = num;
+    }
+    else if(secondInput === "") {
+        secondInput = num;
+    }
 }
 
 // Removes the last input from the display
@@ -71,7 +84,6 @@ function removeNumberFromDisplay() {
 // Appends an operator to the current operation
 function appendOperator(operator) {
     currentOperator = operator;
-    firstInput = calculatorDisplay.textContent;
 }
 
 // Updates the display screen on the calculator
