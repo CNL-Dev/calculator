@@ -4,6 +4,7 @@ const operatorButtons = document.querySelectorAll(".operator-button");
 const clearButton = document.querySelector('.clear-button');
 const evaluateButton = document.querySelector('.evaluate-button');
 const deleteButton = document.querySelector('.delete-button');
+const decimalButton = document.querySelector('.decimal-button');
 
 let displayValue = "";
 let firstInput = "";
@@ -32,6 +33,14 @@ evaluateButton.addEventListener('click', () => {
 
 // On click, clears the display and values
 clearButton.addEventListener('click', clearDisplay);
+
+// On click, removes the last input
+deleteButton.addEventListener('click', removeNumberFromDisplay);
+
+// On click, converts the number to a decimal
+decimalButton.addEventListener('click', () => {
+
+});
 
 // Basic arithmetic functions
 function add(num1, num2) {
@@ -86,10 +95,22 @@ function appendNumberToDisplay(num) {
     updateDisplay();
 }
 
+function convertToDecimal() {
+
+}
+
 // Removes the last input from the display
 function removeNumberFromDisplay() {
-    calculatorDisplay.textContent
-    .toString().slice(0, -1);
+    displayValue = displayValue.slice(0, -1);
+
+    if(currentOperator === "") {
+        firstInput = displayValue;
+    }
+    else {
+        secondInput = displayValue;
+    }
+
+    updateDisplay();
 }
 
 // Appends an operator to the current operation
@@ -99,7 +120,6 @@ function appendOperator(operator) {
 
 // Updates the display screen on the calculator
 function updateDisplay() {
-    // displayValue = `${firstInput} ${currentOperator} ${secondInput}`;
     calculatorDisplay.textContent = displayValue;
 }
 
