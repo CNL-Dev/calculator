@@ -39,7 +39,7 @@ deleteButton.addEventListener('click', removeNumberFromDisplay);
 
 // On click, converts the number to a decimal
 decimalButton.addEventListener('click', () => {
-
+    convertToDecimal();
 });
 
 // Basic arithmetic functions
@@ -96,7 +96,18 @@ function appendNumberToDisplay(num) {
 }
 
 function convertToDecimal() {
+    if(displayValue.indexOf('.') !== - 1) return;
 
+    displayValue += '.';
+
+    if(currentOperator === "") {
+        firstInput = displayValue;
+    }
+    else {
+        secondInput = displayValue;
+    }
+
+    updateDisplay();
 }
 
 // Removes the last input from the display
