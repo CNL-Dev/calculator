@@ -27,7 +27,7 @@ operatorButtons.forEach(button => {
 
 // On click, evaluate the operation
 evaluateButton.addEventListener('click', () => {
-    displayValue = operate(currentOperator, firstInput, secondInput);
+    displayValue = roundNumber(operate(currentOperator, firstInput, secondInput));
 
     // Allows for multiple operations
     firstInput = displayValue;
@@ -44,9 +44,7 @@ clearButton.addEventListener('click', clearDisplay);
 deleteButton.addEventListener('click', removeNumberFromDisplay);
 
 // On click, converts the number to a decimal
-decimalButton.addEventListener('click', () => {
-    convertToDecimal();
-});
+decimalButton.addEventListener('click', convertToDecimal);
 
 // Basic arithmetic functions
 function add(num1, num2) {
@@ -63,6 +61,11 @@ function multiply(num1, num2) {
 
 function divide(num1, num2) {
     return num1 / num2;
+}
+
+// Rounds number to the third decimal place
+function roundNumber(num) {
+    return Math.round(num * 1000) / 1000;
 }
 
 // Returns the appropriate operation from the user input
