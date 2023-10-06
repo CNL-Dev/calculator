@@ -28,6 +28,12 @@ operatorButtons.forEach(button => {
 // On click, evaluate the operation
 evaluateButton.addEventListener('click', () => {
     displayValue = operate(currentOperator, firstInput, secondInput);
+
+    // Allows for multiple operations
+    firstInput = displayValue;
+    secondInput = "";
+    currentOperator = "";
+
     updateDisplay();
 });
 
@@ -95,11 +101,12 @@ function appendNumberToDisplay(num) {
     updateDisplay();
 }
 
+// Converts number to decimal
 function convertToDecimal() {
     if(displayValue.indexOf('.') !== - 1) return;
-
     displayValue += '.';
 
+    // Verify which operand to place decimal number
     if(currentOperator === "") {
         firstInput = displayValue;
     }
@@ -114,6 +121,7 @@ function convertToDecimal() {
 function removeNumberFromDisplay() {
     displayValue = displayValue.slice(0, -1);
 
+    // Verify which operand to place sliced number
     if(currentOperator === "") {
         firstInput = displayValue;
     }
